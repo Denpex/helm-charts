@@ -1,0 +1,27 @@
+namespace: kube-system
+image:
+  repository: python
+  tag: "3.12-slim"
+  pullPolicy: IfNotPresent
+
+denpex:
+  apiKey: ""
+  clusterId: "k8s-gpu-cluster"
+  pollIntervalSeconds: 15
+  verifyChecksum: true
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi
+
+nodeSelector:
+  nvidia.com/gpu.present: "true"
+
+tolerations:
+  - key: nvidia.com/gpu
+    operator: Exists
+    effect: NoSchedule
