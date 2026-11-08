@@ -1,0 +1,52 @@
+apiVersion: v2
+name: denpex-agent
+description: Denpex GPU and Distributed Training Crash Forensics DaemonSet for Kubernetes (NVIDIA Xid, NCCL, CUDA OOM, NVLink, Slurm, and vLLM).
+type: application
+version: 1.1.32
+appVersion: "1.1.32"
+home: https://denpex.com/docs/agent
+icon: https://denpex.com/icon.png
+keywords:
+  - gpu
+  - cuda
+  - nvidia
+  - nccl
+  - pytorch
+  - vllm
+  - xid
+  - mlops
+  - kubernetes
+  - diagnostics
+sources:
+  - https://github.com/Denpex/denpex-action
+  - https://github.com/Denpex/gpu-failure-cheatsheet
+maintainers:
+  - name: Denpex
+    email: support@denpex.com
+    url: https://denpex.com
+annotations:
+  artifacthub.io/category: monitoring-logging
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Denpex Platform
+      url: https://denpex.com
+    - name: Diagnostic Console
+      url: https://denpex.com/console
+    - name: Documentation
+      url: https://denpex.com/docs/agent
+    - name: GPU Failure Encyclopedia
+      url: https://denpex.com/failures
+    - name: Free GPU Calculators & Tools
+      url: https://denpex.com/tools
+    - name: NVIDIA Xid Error Reference
+      url: https://denpex.com/xid
+    - name: NCCL Error Reference
+      url: https://denpex.com/nccl-errors
+    - name: CUDA Error Reference
+      url: https://denpex.com/cuda-errors
+    - name: vLLM Error Reference
+      url: https://denpex.com/vllm-errors
+    - name: VS Code Extension
+      url: https://denpex.com/vscode
+    - name: Open VSX Extension
+      url: https://denpex.com/openvsx
