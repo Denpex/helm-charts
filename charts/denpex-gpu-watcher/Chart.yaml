@@ -1,0 +1,31 @@
+apiVersion: v2
+name: denpex-gpu-watcher
+description: Watches each GPU node's kernel log for GPU Xid, ECC, CUDA out-of-memory and NCCL faults and diagnoses them on the node. Nothing leaves the node unless an API key is set.
+type: application
+version: 1.4.65
+appVersion: "2026.11.15"
+home: https://denpex.com
+icon: https://denpex.com/icon.png
+sources:
+  - https://github.com/Denpex/helm-charts
+keywords:
+  - gpu
+  - nvidia
+  - cuda
+  - pytorch
+  - nccl
+  - mlops
+  - kubernetes
+  - xid
+annotations:
+  artifacthub.io/category: monitoring-logging
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/displayName: Denpex GPU & NCCL Watcher
+  artifacthub.io/links: |
+    - name: Documentation
+      url: https://denpex.com/docs/integrations
+    - name: Plans
+      url: https://denpex.com/pricing?utm_source=artifacthub_helm
+  artifacthub.io/images: |
+    - name: denpex-node-watcher
+      image: ghcr.io/denpex/denpex-node-watcher:1.1.35

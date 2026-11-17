@@ -1,16 +1,24 @@
-# Denpex GPU Crash Forensics Helm Chart (`denpex-agent`)
+# Denpex Helm charts
 
-Official Kubernetes Helm chart for deploying the **Denpex GPU & Distributed Training Diagnostics** DaemonSet across NVIDIA H100, H200, B200, A100, and L40S GPU nodes.
+Source for the `denpex-gpu-watcher` chart, published at `https://denpex.com/charts` and listed
+on Artifact Hub.
 
-Automatically monitors `/dev/kmsg`, DCGM telemetry, ECC row remapping, NVLink/PCIe errors, NCCL collective hangs, and CUDA OOM events across every GPU node in your cluster.
+The chart runs a small watcher on every GPU node. It follows the node's kernel log, recognises
+GPU and distributed-training faults (GPU Xid errors, a GPU falling off the bus, uncorrectable
+ECC, CUDA out-of-memory, NCCL watchdog timeouts, hung tasks, Lustre errors) and diagnoses each
+one on the node. Nothing leaves the node unless you set a Denpex API key. Details and values:
+[charts/denpex-gpu-watcher/README.md](charts/denpex-gpu-watcher/README.md).
 
 ## Quickstart
 
 ```bash
-helm install denpex-agent ./charts/denpex-agent \
-  --namespace kube-system \
-  --set denpex.apiKey=dpx_your_api_key
+helm repo add denpex https://denpex.com/charts
+helm install denpex-watcher denpex/denpex-gpu-watcher --namespace monitoring --create-namespace
+kubectl -n monitoring logs -l app.kubernetes.io/name=denpex-gpu-watcher -f
 ```
+
+The earlier `denpex-agent` chart that lived here downloaded its script at every pod start and
+is replaced by this one.
 
 ## Official Denpex Ecosystem & Documentation
 

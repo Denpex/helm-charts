@@ -1,0 +1,44 @@
+image:
+  # Built from packages/denpex-node-watcher: the denpex 1.1.35 PyPI package pinned by hash,
+  # Node.js 20 for on-node diagnosis, and the node watcher. Nothing is downloaded at start.
+  repository: ghcr.io/denpex/denpex-node-watcher
+  tag: "1.1.35"
+  pullPolicy: IfNotPresent
+
+denpex:
+  engineVersion: "2026.11.15"
+  apiBaseUrl: "https://api.denpex.com"
+  # Optional. Without a key every fault is diagnosed on the node and nothing leaves it.
+  # With a key, fault context is also sent to Denpex for cloud diagnosis and alert routing.
+  # Set via --set denpex.apiKey=dpx_... or name a pre-created Secret in existingSecret
+  # (key: DENPEX_API_KEY).
+  apiKey: ""
+  existingSecret: ""
+  # Set false to keep everything on the node even when a key is configured.
+  upload: true
+  # Cordon a node on hardware faults (GPU off the bus, uncorrectable ECC, GSP errors).
+  # Never for out-of-memory or NCCL timeouts. Creates RBAC to patch nodes when true.
+  autoCordon: false
+  # Minimum seconds between reports of workload faults. Hardware faults always report.
+  cooldownSeconds: 60
+
+nodeSelector:
+  nvidia.com/gpu.present: "true"
+
+tolerations:
+  - operator: Exists
+
+# One-off pre-launch GPU health check (`denpex preflight`) on a GPU node at install time.
+# Off by default: it needs GPU visibility, which the job requests through the NVIDIA
+# container runtime environment variables below.
+preflight:
+  enabled: false
+  deepCheck: true
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi
