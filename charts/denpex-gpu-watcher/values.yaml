@@ -6,7 +6,7 @@ image:
   pullPolicy: IfNotPresent
 
 denpex:
-  engineVersion: "2026.11.18"
+  engineVersion: "2026.11.21"
   apiBaseUrl: "https://api.denpex.com"
   # Optional. Without a key every fault is diagnosed on the node and nothing leaves it.
   # With a key, fault context is also sent to Denpex for cloud diagnosis and alert routing.
