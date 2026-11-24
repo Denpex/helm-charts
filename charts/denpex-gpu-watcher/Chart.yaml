@@ -2,8 +2,8 @@ apiVersion: v2
 name: denpex-gpu-watcher
 description: Watches each GPU node's kernel log for GPU Xid, ECC, CUDA out-of-memory and NCCL faults and diagnoses them on the node. Nothing leaves the node unless an API key is set.
 type: application
-version: 1.4.67
-appVersion: "2026.11.21"
+version: 1.4.68
+appVersion: "2026.11.24"
 home: https://denpex.com
 icon: https://denpex.com/icon.png
 sources:
